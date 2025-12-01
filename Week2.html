@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 2</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#96bcf4] font-[Trebuchet_MS] text-white m-0">
+
+  <div class="max-w-[900px] mx-auto p-8">
+
+    <ul class="mt-12 flex list-none p-0">
+      <li>
+        <a href="index.html" class="inline-flex items-center gap-2 w-[150px] text-[28px] text-white no-underline py-2 px-3 rounded-md transition-transform duration-200 hover:scale-125">
+          <span class="text-[30px]">🏠</span>
+          HOME
+        </a>
+      </li>
+    </ul>
+
+    <h1 class="mt-6 text-black text-[40px] font-bold">Week 2</h1>
+
+    <div class="documentatie text-white leading-relaxed">
+
+      <p class="mt-4">Op 22/09 kregen we de opdracht om voor elk scherm vanuit één low fidelity schets verder te werken.</p>
+
+      <p class="mt-4">Voor de <strong class="text-black">overzichtsscherm</strong> heb ik mij gebaseerd op mijn eerste schets.<br>De status is achter de bestemming geplaatst, aangezien het belangrijker is om snel de correcte eindbestemming te vinden dan de status te weten.</p>
+
+      <p class="mt-4">Mijn tweede schets bleek achteraf niet logisch te zijn omdat de verschillende tijden van vertrek niet onder de actuele tijd staan. Voor mijn derde schets kreeg ik feedback dat het wel ordelijk was, maar het nam per bestemming veel plaats in beslag dus heb ik er niet mee verder gewerkt.</p>
+
+      <div class="flex justify-center my-6">
+        <img src="imageWeek2/LowFi10.png" class="max-w-[400px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(0)">
+      </div>
+
+      <p class="mt-4">Voor de <strong class="text-black">perron scherm</strong> heb ik mij gebaseerd op mijn tweede schets.<br>De positie waar de tussenstops worden weergegeven zorgt voor een duidelijke scheiding tussen de eerstvolgende trein en alle andere erna, waardoor de eerstvolgende meer opvalt.</p>
+
+      <p class="mt-4">Doordat het weergeven van tussenstops minder plaats innam dan verwacht, was het mogelijk om meerdere eindbestemmingen onder elkaar te zetten. Ook de status nam weinig plaats in, dus om meer duidelijkheid te creëren worden eindbestemming, treintype en treinnummer samen weergegeven.</p>
+
+      <div class="flex justify-center my-6">
+        <img src="imageWeek2/LowFi11.png" class="max-w-[400px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(1)">
+      </div>
+
+      <p class="mt-4">Voor het <strong class="text-black">wagon scherm</strong> heb ik mij gebaseerd op mijn tweede schets.<br>Bovenaan is de naam van de volgende halte vervangen door de eindbestemming, treintype en treinnummer, aangezien deze informatie de hele rit hetzelfde blijft.</p>
+
+      <p class="mt-4">Gebaseerd op feedback heb ik een treinindeling toegevoegd met aanduidingen voor onder andere rolstoelgebruikers en fietsers. Minder volgende haltes weergeven zorgde voor extra ruimte om de indeling duidelijk toe te voegen.</p>
+
+      <div class="flex justify-center my-6">
+        <img src="imageWeek2/LowFi12.png" class="max-w-[400px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(2)">
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="imageOverlay" class="hidden fixed top-0 left-0 w-screen h-screen bg-black/85 flex justify-center items-center z-[9999] cursor-default">
+    <span id="leftArrow" class="absolute left-6 top-1/2 -translate-y-1/2 text-[60px] text-white cursor-pointer select-none px-5 hover:opacity-75" onclick="prevImage()">❮</span>
+
+    <img id="overlayImg" src="" class="max-w-[95vw] max-height-[95vh] rounded-lg" />
+
+    <span id="rightArrow" class="absolute right-6 top-1/2 -translate-y-1/2 text-[60px] text-white cursor-pointer select-none px-5 hover:opacity-75" onclick="nextImage()">❯</span>
+  </div>
+
+  <script>
+    const images = [
+      "imageWeek2/LowFi10.png",
+      "imageWeek2/LowFi11.png",
+      "imageWeek2/LowFi12.png"
+    ];
+
+    let currentIndex = 0;
+
+    function openSlider(i) {
+      currentIndex = i;
+      document.getElementById("overlayImg").src = images[currentIndex];
+      document.getElementById("imageOverlay").classList.remove("hidden");
+      document.getElementById("imageOverlay").classList.add("flex");
+    }
+
+    function closeSlider() {
+      document.getElementById("imageOverlay").classList.add("hidden");
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById("overlayImg").src = images[currentIndex];
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById("overlayImg").src = images[currentIndex];
+    }
+
+    document.getElementById("imageOverlay").addEventListener("click", function(e) {
+      if (e.target.id === "imageOverlay") closeSlider();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeSlider();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+  </script>
+
+</body>
+</html>

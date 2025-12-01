@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 5 – Tailwind</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#96bcf4] text-white font-[Trebuchet_MS] m-0">
+
+  <div class="max-w-[900px] mx-auto px-5 py-8">
+
+    <ul class="flex mt-12 list-none p-0">
+      <li>
+        <a href="index.html" class="flex items-center gap-2 w-[150px] text-[28px] text-white no-underline p-2 rounded transition-transform duration-200 hover:scale-110">
+          <span class="text-[30px]">🏠</span> HOME
+        </a>
+      </li>
+    </ul>
+
+    <h1 class="text-black text-[40px] font-bold mt-6">Week 5</h1>
+
+    <div class="space-y-6">
+      <p>Op 13/10 kregen we de opdracht om onze schermen om te vormen naar <em>high fidelity</em> schermen met HTML.</p>
+
+      <p>Voor de <strong class="text-black">overzichtsscherm</strong></p>
+
+      <!-- OVERZICHTSCHERM -->
+      <div class="flex flex-wrap gap-5 justify-center mb-8">
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingOverzichtsscherm/Poging1.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,0)" />
+        </div>
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingOverzichtsscherm/Poging5.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,1)" />
+        </div>
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingOverzichtsscherm/Poging12.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,2)" />
+        </div>
+        <div class="flex justify-center basis-full">
+          <img src="imageWeek5/HighFi1.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,3)" />
+        </div>
+      </div>
+
+      <p>Voor de <strong class="text-black">perronscherm</strong></p>
+
+      <!-- PERRONSCHERM -->
+      <div class="flex flex-wrap gap-5 justify-center mb-8">
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingPerronscherm/Poging1.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,0)" />
+        </div>
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingPerronscherm/Poging6.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,1)" />
+        </div>
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/HighFi2.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,2)" />
+        </div>
+        <div class="flex justify-center basis-full">
+          <img src="imageWeek5/PogingPerronscherm/Poging9.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,3)" />
+        </div>
+      </div>
+
+      <p>Voor de <strong class="text-black">wagonscherm</strong></p>
+
+      <!-- WAGON SCHERM -->
+      <div class="flex flex-wrap gap-5 justify-center mb-8">
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingWagonscherm/Poging1.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,0)" />
+        </div>
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingWagonscherm/Poging3.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,1)" />
+        </div>
+        <div class="flex justify-center flex-1 basis-[calc(33.33%-20px)]">
+          <img src="imageWeek5/PogingWagonscherm/Poging6.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,2)" />
+        </div>
+        <div class="flex justify-center basis-full">
+          <img src="imageWeek5/HighFi3.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,3)" />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FULLSCREEN SLIDER -->
+  <div id="imageOverlay" class="fixed inset-0 bg-black/80 hidden justify-center items-center z-[9999]">
+    <span id="leftArrow" class="text-white text-[50px] cursor-pointer select-none mx-5" onclick="prevImage()">❮</span>
+    <img id="overlayImg" class="max-w-[90vw] max-h-[90vh] rounded" />
+    <span id="rightArrow" class="text-white text-[50px] cursor-pointer select-none mx-5" onclick="nextImage()">❯</span>
+  </div>
+
+  <script>
+    const groupImages = [
+      [
+        "imageWeek5/PogingOverzichtsscherm/Poging1.png",
+        "imageWeek5/PogingOverzichtsscherm/Poging5.png",
+        "imageWeek5/PogingOverzichtsscherm/Poging12.png",
+        "imageWeek5/HighFi1.png"
+      ],
+      [
+        "imageWeek5/PogingPerronscherm/Poging1.png",
+        "imageWeek5/PogingPerronscherm/Poging6.png",
+        "imageWeek5/HighFi2.png",
+        "imageWeek5/PogingPerronscherm/Poging9.png"
+      ],
+      [
+        "imageWeek5/PogingWagonscherm/Poging1.png",
+        "imageWeek5/PogingWagonscherm/Poging3.png",
+        "imageWeek5/PogingWagonscherm/Poging6.png",
+        "imageWeek5/HighFi3.png"
+      ]
+    ];
+
+    let currentGroup = 0;
+    let currentIndex = 0;
+
+    function openSlider(group, index) {
+      currentGroup = group;
+      currentIndex = index;
+      document.getElementById("overlayImg").src = groupImages[group][index];
+      document.getElementById("imageOverlay").style.display = "flex";
+    }
+
+    function closeSlider() {
+      document.getElementById("imageOverlay").style.display = "none";
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % groupImages[currentGroup].length;
+      document.getElementById("overlayImg").src = groupImages[currentGroup][currentIndex];
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + groupImages[currentGroup].length) % groupImages[currentGroup].length;
+      document.getElementById("overlayImg").src = groupImages[currentGroup][currentIndex];
+    }
+
+    document.getElementById("imageOverlay").addEventListener("click", function(e) {
+      if (e.target.id === "imageOverlay") closeSlider();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeSlider();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="nl" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 5 – Tailwind</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#96bcf4] font-[Trebuchet\ MS] text-white">
+
+  <div class="max-w-[900px] mx-auto px-5 py-8">
+
+    <ul class="flex mt-12 list-none p-0">
+      <li>
+        <a href="index.html" class="inline-flex items-center gap-2 w-[150px] text-[28px] text-white no-underline px-3 py-1 rounded transition-transform duration-200 hover:scale-125">
+          <span class="text-[32px]">🏠</span> HOME
+        </a>
+      </li>
+    </ul>
+
+    <h1 class="mt-6 text-[40px] font-bold text-black">Week 5</h1>
+
+    <div class="space-y-6 text-white">
+
+      <p>Op 13/10 kregen we de opdracht om onze schermen om te vormen naar <em>high fidelity</em> schermen met HTML.</p>
+
+      <p>Voor de <strong class="text-black">overzichtsscherm</strong></p>
+
+      <!-- OVERZICHTSCHERM -->
+      <div class="flex flex-wrap gap-5 justify-center mb-8">
+        <div class="flex justify-center flex-1 min-w-[250px] max-w-[33%]">
+          <img src="imageWeek5/PogingOverzichtsscherm/Poging1.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,0)">
+        </div>
+
+        <div class="flex justify-center flex-1 min-w-[250px] max-w-[33%]">
+          <img src="imageWeek5/PogingOverzichtsscherm/Poging5.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,1)">
+        </div>
+
+        <div class="flex justify-center flex-1 min-w-[250px] max-w-[33%]">
+          <img src="imageWeek5/PogingOverzichtsscherm/Poging12.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,2)">
+        </div>
+
+        <div class="flex justify-center w-full">
+          <img src="imageWeek5/HighFi1.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(0,3)">
+        </div>
+      </div>
+
+      <p>Voor de <strong class="text-black">perronscherm</strong></p>
+
+      <!-- PERRONSCHERM -->
+      <div class="flex flex-wrap gap-5 justify-center mb-8">
+        <div class="flex justify-center flex-1 min-w-[200px] max-w-[33%]">
+          <img src="imageWeek5/PogingPerronscherm/Poging1.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,0)">
+        </div>
+
+        <div class="flex justify-center flex-1 min-w-[200px] max-w-[33%]">
+          <img src="imageWeek5/PogingPerronscherm/Poging6.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,1)">
+        </div>
+
+        <div class="flex justify-center flex-1 min-w-[200px] max-w-[33%]">
+          <img src="imageWeek5/HighFi2.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,2)">
+        </div>
+
+        <div class="flex justify-center w-full">
+          <img src="imageWeek5/PogingPerronscherm/Poging9.png" class="w-full max-w-[250px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(1,3)">
+        </div>
+      </div>
+
+      <p>Voor de <strong class="text-black">wagonscherm</strong></p>
+
+      <!-- WAGON SCHERM -->
+      <div class="flex flex-wrap gap-5 justify-center mb-8">
+        <div class="flex justify-center flex-1 min-w-[250px] max-w-[33%]">
+          <img src="imageWeek5/PogingWagonscherm/Poging1.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,0)">
+        </div>
+
+        <div class="flex justify-center flex-1 min-w-[250px] max-w-[33%]">
+          <img src="imageWeek5/PogingWagonscherm/Poging3.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,1)">
+        </div>
+
+        <div class="flex justify-center flex-1 min-w-[250px] max-w-[33%]">
+          <img src="imageWeek5/PogingWagonscherm/Poging6.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,2)">
+        </div>
+
+        <div class="flex justify-center w-full">
+          <img src="imageWeek5/HighFi3.png" class="w-full max-w-[400px] rounded shadow-lg cursor-zoom-in transition-transform hover:scale-105" onclick="openSlider(2,3)">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FULLSCREEN SLIDER -->
+  <div id="imageOverlay" class="hidden fixed inset-0 bg-black/80 flex justify-center items-center z-[9999] cursor-default">
+    <span id="leftArrow" class="text-white text-[50px] mx-5 cursor-pointer select-none" onclick="prevImage()">❮</span>
+    <img id="overlayImg" src="" class="max-w-[90vw] max-h-[90vh] rounded">
+    <span id="rightArrow" class="text-white text-[50px] mx-5 cursor-pointer select-none" onclick="nextImage()">❯</span>
+  </div>
+
+  <script>
+    const groupImages = [
+      [
+        "imageWeek5/PogingOverzichtsscherm/Poging1.png",
+        "imageWeek5/PogingOverzichtsscherm/Poging5.png",
+        "imageWeek5/PogingOverzichtsscherm/Poging12.png",
+        "imageWeek5/HighFi1.png"
+      ],
+      [
+        "imageWeek5/PogingPerronscherm/Poging1.png",
+        "imageWeek5/PogingPerronscherm/Poging6.png",
+        "imageWeek5/HighFi2.png",
+        "imageWeek5/PogingPerronscherm/Poging9.png"
+      ],
+      [
+        "imageWeek5/PogingWagonscherm/Poging1.png",
+        "imageWeek5/PogingWagonscherm/Poging3.png",
+        "imageWeek5/PogingWagonscherm/Poging6.png",
+        "imageWeek5/HighFi3.png"
+      ]
+    ];
+
+    let currentGroup = 0;
+    let currentIndex = 0;
+
+    function openSlider(group, index) {
+      currentGroup = group;
+      currentIndex = index;
+      document.getElementById("overlayImg").src = groupImages[group][index];
+      document.getElementById("imageOverlay").classList.remove("hidden");
+      document.getElementById("imageOverlay").classList.add("flex");
+    }
+
+    function closeSlider() {
+      const overlay = document.getElementById("imageOverlay");
+      overlay.classList.add("hidden");
+      overlay.classList.remove("flex");
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % groupImages[currentGroup].length;
+      document.getElementById("overlayImg").src = groupImages[currentGroup][currentIndex];
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + groupImages[currentGroup].length) % groupImages[currentGroup].length;
+      document.getElementById("overlayImg").src = groupImages[currentGroup][currentIndex];
+    }
+
+    document.getElementById("imageOverlay").addEventListener("click", function(e) {
+      if (e.target.id === "imageOverlay") closeSlider();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeSlider();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Homepage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#96bcf4] m-0 font-[Trebuchet_MS] text-white">
+
+  <div class="max-w-[900px] mx-auto p-8">
+
+    <ul class="mt-12 flex list-none p-0">
+      <li>
+        <a href="index.html" class="inline-flex items-center gap-2 w-[150px] text-[28px] text-white no-underline py-2 px-3 rounded-md transition-transform duration-200 hover:scale-125">
+          <span class="text-[32px]">🏠</span>
+          HOME
+        </a>
+      </li>
+    </ul>
+
+    <h1 class="mt-6 text-black text-[40px] font-bold">Week 1</h1>
+
+    <div class="documentatie text-white">
+      <p class="leading-relaxed mt-4">
+        Op 15/09 kregen we de opdracht om drie keer drie <em>low fidelity</em> schermen 
+        te maken voor in een treinstation.<br />
+        We moesten hiervoor eerst wat opzoekwerk doen over overzichtsschermen, 
+        perronschermen en wagonschermen.
+      </p>
+
+      <p class="leading-relaxed mt-4">
+        Gebaseerd op de gegeven afmetingen, maakte ik negen schetsen en hield ik 
+        rekening met hiërarchie, positie en verdeling.
+      </p>
+
+      <p class="text-center font-bold mt-8 mb-3 text-[20px] text-black">Overzichtsscherm:</p>
+
+      <div class="flex flex-wrap justify-center gap-5 mt-6">
+        <img src="imageWeek1/LowFi1.png" class="max-w-[300px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(0)">
+        <img src="imageWeek1/LowFi2&3.png" class="max-w-[300px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(1)">
+      </div>
+
+      <p class="text-center font-bold mt-8 mb-3 text-[20px] text-black">Perronscherm</p>
+
+      <div class="flex flex-wrap justify-center gap-5 mt-6">
+        <img src="imageWeek1/LowFi4.png" class="max-w-[300px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(2)">
+        <img src="imageWeek1/LowFi5&6.png" class="max-w-[300px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(3)">
+      </div>
+
+      <p class="text-center font-bold mt-8 mb-3 text-[20px] text-black">Wagonscherm</p>
+
+      <div class="flex flex-wrap justify-center gap-5 mt-6">
+        <img src="imageWeek1/LowFi7.png" class="max-w-[300px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(4)">
+        <img src="imageWeek1/LowFi8&9.png" class="max-w-[300px] w-full rounded-md shadow-lg transition-transform duration-200 cursor-pointer hover:scale-105" onclick="openSlider(5)">
+      </div>
+
+    </div>
+  </div>
+
+  <div id="imageOverlay" class="hidden fixed top-0 left-0 w-screen h-screen bg-black/85 flex justify-center items-center z-[9999] cursor-default">
+    <span id="leftArrow" class="absolute left-6 top-1/2 -translate-y-1/2 text-[60px] text-white cursor-pointer select-none px-5 hover:opacity-75" onclick="prevImage()">❮</span>
+
+    <img id="overlayImg" src="" class="max-w-[95vw] max-h-[95vh] rounded-lg" />
+
+    <span id="rightArrow" class="absolute right-6 top-1/2 -translate-y-1/2 text-[60px] text-white cursor-pointer select-none px-5 hover:opacity-75" onclick="nextImage()">❯</span>
+  </div>
+
+  <script>
+    const images = [
+      "imageWeek1/LowFi1.png",
+      "imageWeek1/LowFi2&3.png",
+      "imageWeek1/LowFi4.png",
+      "imageWeek1/LowFi5&6.png",
+      "imageWeek1/LowFi7.png",
+      "imageWeek1/LowFi8&9.png"
+    ];
+
+    let currentIndex = 0;
+
+    function openSlider(i) {
+      currentIndex = i;
+      document.getElementById("overlayImg").src = images[currentIndex];
+      document.getElementById("imageOverlay").classList.remove("hidden");
+      document.getElementById("imageOverlay").classList.add("flex");
+    }
+
+    function closeSlider() {
+      document.getElementById("imageOverlay").classList.add("hidden");
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById("overlayImg").src = images[currentIndex];
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById("overlayImg").src = images[currentIndex];
+    }
+
+    document.getElementById("imageOverlay").addEventListener("click", function(e) {
+      if (e.target.id === "imageOverlay") closeSlider();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeSlider();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+  </script>
+
+</body>
+</html>
